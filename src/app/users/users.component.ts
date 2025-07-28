@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 interface User {
   id: number;
@@ -11,9 +12,12 @@ interface User {
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
+  standalone: true,
+  imports: [CommonModule, RouterLink]
 })
 export class UsersComponent implements OnInit {
   userId: string | null = '';
+<<<<<<< HEAD
   users: User[] = [];
 
   isLoading = true;
@@ -32,6 +36,11 @@ fetchUsers() {
       }
     });
 }
+=======
+  users: any[] = [];
+  loading = false;
+  error = false;
+>>>>>>> 9631068a4219f7df9bb4e3c02f2b76ca7a9050e4
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
@@ -40,4 +49,24 @@ fetchUsers() {
     this.fetchUsers();
   }
 
+<<<<<<< HEAD
+=======
+  fetchUsers() {
+    this.loading = true;
+    this.error = false;
+    
+    this.http.get<any[]>('https://jsonplaceholder.typicode.com/users')
+      .subscribe({
+        next: (data) => {
+          this.users = data;
+          this.loading = false;
+        },
+        error: (err) => {
+          this.error = true;
+          this.loading = false;
+          console.error('Error fetching users:', err);
+        }
+      });
+  }
+>>>>>>> 9631068a4219f7df9bb4e3c02f2b76ca7a9050e4
 }
