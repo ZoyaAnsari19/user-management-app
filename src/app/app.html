@@ -1,6 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">User Management App</a>
-</nav>
+
+<!-- app.component.html -->
+
+<!-- Navbar Component -->
+<app-navbar></app-navbar>
+
+<!-- Main container -->
 <div class="container mt-3">
-  <router-outlet></router-outlet>
+  <div class="row">
+    <div class="col-md-6">
+      Left Content
+    </div>
+    <div class="col-md-6">
+      Right Content
+    </div>
+  </div>
+
+  <!-- Router outlet for component loading -->
+  <div class="mt-4">
+    <router-outlet></router-outlet>
+  </div>
 </div>

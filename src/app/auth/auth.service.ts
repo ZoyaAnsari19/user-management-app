@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private isLoggedIn = new BehaviorSubject<boolean>(this.hasToken());
   isLoggedIn$ = this.isLoggedIn.asObservable();
+
+  constructor(private router: Router) {}
 
   login(username: string, password: string): boolean {
     if (username === 'admin' && password === 'admin') {
@@ -16,9 +19,10 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this.isLoggedIn.next(false);
-  }
+  localStorage.removeItem('user');
+  this.router.navigate(['/login']);
+}
+
 
   private hasToken(): boolean {
     return !!localStorage.getItem('token');

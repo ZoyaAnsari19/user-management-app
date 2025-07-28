@@ -1,13 +1,27 @@
-<h2>Users List (ID from route: {{ userId }})</h2>
-<table class="table table-bordered">
-  <thead>
-    <tr><th>Name</th><th>Email</th><th>Username</th></tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{ user.name }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.username }}</td>
-    </tr>
-  </tbody>
-</table>
+<!-- Loading Spinner -->
+<div *ngIf="isLoading" class="d-flex justify-content-center py-4">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<!-- Users Table (Main content) -->
+<div *ngIf="!isLoading">
+  <h2>Users List (ID from route: {{ userId }})</h2>
+  <table class="table table-bordered table-striped">
+    <thead class="table-light">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.username }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
